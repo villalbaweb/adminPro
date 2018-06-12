@@ -16,13 +16,4 @@ export class ProgressComponent implements OnInit {
   ngOnInit() {
   }
 
-  NuevoCalculo(event: number, origen: string) {
-    console.log(event + ' ' + origen);
-    if(origen === 'AZUL') {
-      this.progresoAzul = event;
-    } else {
-      this.progresoVerde = event;
-    }
-  }
-
 }

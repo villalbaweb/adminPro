@@ -22,7 +22,7 @@
               <app-incrementador
                 [leyenda]="'Progress Azul'"
                 [progreso]="progresoAzul"
-                (nuevoCalculo)="NuevoCalculo($event,'AZUL')">
+                (nuevoCalculo)="progresoAzul = $event">
               </app-incrementador>
             </div>
         </div>
@@ -34,7 +34,7 @@
               <app-incrementador
                 leyenda="Progress Verde"
                 [progreso]="progresoVerde"
-                (nuevoCalculo)="NuevoCalculo($event,'VERDE')">
+                (nuevoCalculo)="progresoVerde = $event">
               </app-incrementador>
             </div>
         </div>
