@@ -8,11 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProgressComponent implements OnInit {
 
-  progreso: number = 50;
+  progresoAzul: number = 50;
+  progresoVerde: number = 50;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  NuevoCalculo(event: number, origen: string) {
+    console.log(event + ' ' + origen);
+    if(origen === 'AZUL') {
+      this.progresoAzul = event;
+    } else {
+      this.progresoVerde = event;
+    }
   }
 
 }
