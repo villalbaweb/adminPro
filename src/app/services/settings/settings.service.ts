@@ -6,9 +6,7 @@ interface Ajuste {
   tema: string;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class SettingsService {
 
   ajustes: Ajuste = {
