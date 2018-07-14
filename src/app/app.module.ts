@@ -6,6 +6,7 @@ import { APP_ROUTES } from './app.routes';
 
 // modules
 import { PagesModule } from './pages/pages.module';
+import { ServiceModule } from './services/service.module';
 
 
 import { AppComponent } from './app.component';
@@ -21,7 +22,8 @@ import { RegisterComponent } from './login/register.component';
   imports: [
     BrowserModule,
     PagesModule,
-    APP_ROUTES
+    APP_ROUTES,
+    ServiceModule
   ],
   providers: [],
   bootstrap: [AppComponent]

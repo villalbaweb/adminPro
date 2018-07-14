@@ -7,7 +7,7 @@ import { SettingsService, SharedService, SidebarService } from './service.index'
   imports: [
     CommonModule
   ],
-  declarations: [
+  providers: [
     SettingsService,
     SharedService,
     SidebarService
