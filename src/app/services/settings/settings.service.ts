@@ -24,7 +24,6 @@ export class SettingsService {
     this.ajustes.temaUrl = `assets/css/colors/${nuevoColor}.css`;
 
     localStorage.setItem('ajustes', JSON.stringify(this.ajustes));
-    console.log('Guardado en local storage...');
 
     this.cambiarTema(this.ajustes);
   }
@@ -32,9 +31,6 @@ export class SettingsService {
   cargarAJustes() {
     if(localStorage.getItem('ajustes')) {
       this.ajustes = JSON.parse(localStorage.getItem('ajustes'));
-      console.log('Cargando ajustes del local storage...', this.ajustes);
-    } else {
-      console.log('Usando valores por defecto');
     }
     this.cambiarTema(this.ajustes);
   }
