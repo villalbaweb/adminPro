@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { resolve } from 'path';
-import { reject } from '../../../../node_modules/@types/q';
 
 @Component({
   selector: 'app-promesas',
@@ -10,19 +8,9 @@ import { reject } from '../../../../node_modules/@types/q';
 export class PromesasComponent implements OnInit {
 
   constructor() {
-    let promise = new Promise((resolve, reject) => {
-      let counter = 0;
-      let interval = setInterval(()=> {
-        counter += 1;
-        console.log(counter);
-        if(counter === 3) {
-          reject('The counter has been 3');
-          clearInterval(interval);
-        }
-      }, 1000);
-    });
 
-    promise.then((success) => {
+
+    this.ContarHastaTres().then((success) => {
       console.log('Success response... ', success);
     })
     .catch((error) => {
@@ -31,6 +19,20 @@ export class PromesasComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ContarHastaTres(): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      let counter = 0;
+      let interval = setInterval(()=> {
+        counter += 1;
+        console.log(counter);
+        if(counter === 3) {
+          resolve(true);
+          clearInterval(interval);
+        }
+      }, 1000);
+    });
   }
 
 }
