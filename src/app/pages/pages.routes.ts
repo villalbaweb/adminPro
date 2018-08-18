@@ -6,6 +6,7 @@ import { Graphs1Component } from './graphs1/graphs1.component';
 import { PagesComponent } from './pages.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 const pagesRoutes: Routes = [
     {
@@ -17,6 +18,7 @@ const pagesRoutes: Routes = [
             { path: 'graphs1', component: Graphs1Component },
             { path: 'promesas', component: PromesasComponent },
             { path: 'account-settings', component: AccountSettingsComponent },
+            { path: 'rxjs', component: RxjsComponent },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
     }
