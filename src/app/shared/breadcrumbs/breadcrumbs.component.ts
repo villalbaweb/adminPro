@@ -22,9 +22,9 @@ export class BreadcrumbsComponent implements OnInit {
       this.title.setTitle(data.Titulo);
       const descriptionMetaTag: MetaDefinition = {
         name: 'description',
-        content: 'This is a test of a meta tag data included to an Angular App'
+        content: `This is a test of a meta tag data included to an Angular App, page: ${data.Titulo}`
       };
-      this.metaData.addTag(descriptionMetaTag);
+      this.metaData.updateTag(descriptionMetaTag);
     });
   }
 
