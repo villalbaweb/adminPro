@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { retry, map } from 'rxjs/operators';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+import { retry, map, filter } from 'rxjs/operators';
+import { visitSiblingRenderNodes } from '@angular/core/src/view/util';
 
 @Component({
   selector: 'app-rxjs',
   templateUrl: './rxjs.component.html',
   styleUrls: ['./rxjs.component.css']
 })
-export class RxjsComponent implements OnInit {
+export class RxjsComponent implements OnInit, OnDestroy {
+
+  $observableSubscription: Subscription = new Subscription();
 
   constructor() { 
-    this.regresarObservable()
+    this.$observableSubscription = this.regresarObservable()
     .subscribe(
       (numero) => {
         console.log(numero);
@@ -21,6 +24,10 @@ export class RxjsComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.$observableSubscription.unsubscribe();
   }
 
   regresarObservable():Observable<number>{
@@ -34,21 +41,20 @@ export class RxjsComponent implements OnInit {
         };
 
         observer.next(result);
-        if(counter === 3) {
-          observer.complete();
-          clearInterval(intervalo);
-        } 
-        else if(counter === 2) {
-          clearInterval(intervalo);
-          observer.error('El contador alcanzo 2...');
-        }
+        // if(counter === 3) {
+        //   observer.complete();
+        //   clearInterval(intervalo);
+        // } 
+        // else if(counter === 2) {
+        //   clearInterval(intervalo);
+        //   observer.error('El contador alcanzo 2...');
+        // }
       }, 1000);
     })
     .pipe(
       retry(2),
-      map(valor => {
-        return valor.value;
-      })
+      map(valor => valor.value),
+      filter(valor => valor % 2 === 1)
     );
   }
 
