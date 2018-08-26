@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivationStart, ActivationEnd } from '@angular/router';
 import { retry, map, filter } from 'rxjs/operators';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta, MetaDefinition } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -13,12 +13,18 @@ export class BreadcrumbsComponent implements OnInit {
   currentPage: string = 'Initial';
 
   constructor(private router:Router,
-              private title: Title) {
+              private title: Title,
+              private metaData: Meta) {
     this.getRouteData()
     .subscribe((data) => {
       console.log(data);
       this.currentPage = data.Titulo;
       this.title.setTitle(data.Titulo);
+      const descriptionMetaTag: MetaDefinition = {
+        name: 'description',
+        content: 'This is a test of a meta tag data included to an Angular App'
+      };
+      this.metaData.addTag(descriptionMetaTag);
     });
   }
 
