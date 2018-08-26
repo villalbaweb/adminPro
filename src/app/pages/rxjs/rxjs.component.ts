@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { retry } from 'rxjs/operators';
+import { retry, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs',
@@ -11,9 +11,6 @@ export class RxjsComponent implements OnInit {
 
   constructor() { 
     this.regresarObservable()
-    .pipe(
-      retry(2)
-    )
     .subscribe(
       (numero) => {
         console.log(numero);
@@ -27,20 +24,32 @@ export class RxjsComponent implements OnInit {
   }
 
   regresarObservable():Observable<number>{
-    return new Observable( observer => {
+    return new Observable<{value:number}>( observer => {
       let counter = 0;
       let intervalo = setInterval(() => {
         counter++;
-        observer.next(counter);
+
+        let result = {
+          value: counter
+        };
+
+        observer.next(result);
         if(counter === 3) {
           observer.complete();
           clearInterval(intervalo);
-        } else if(counter === 2) {
+        } 
+        else if(counter === 2) {
           clearInterval(intervalo);
           observer.error('El contador alcanzo 2...');
         }
       }, 1000);
-    });
+    })
+    .pipe(
+      retry(2),
+      map(valor => {
+        return valor.value;
+      })
+    );
   }
 
 }
