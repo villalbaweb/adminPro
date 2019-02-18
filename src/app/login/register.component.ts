@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+import swal from 'sweetalert';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -36,6 +38,10 @@ export class RegisterComponent implements OnInit {
   }
 
   registrarUsuario() {
+
+    if(!this.forma.value.condiciones) {
+      swal("Importante", "Debe aceptar terminos y condiones", "warning");
+    }
     console.log(this.forma.valid);
     console.log(this.forma.errors);
     console.log(this.forma.value);
