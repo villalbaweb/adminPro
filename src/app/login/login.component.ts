@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { UsuarioService } from '../services/service.index';
 import { Usuario } from '../models/usuario.model';
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
 
   recuerdame: boolean = false;
   
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -28,6 +30,7 @@ export class LoginComponent implements OnInit {
       this.usuarioService.Login(usuario, forma.value.recuerdame)
       .subscribe(result => {
         console.log(result);
+        this.router.navigate(['dashboard']);
       })
     }
   }
