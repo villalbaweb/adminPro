@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import swal from 'sweetalert';
 
 import { UsuarioService } from '../services/service.index';
+import { Usuario } from '../models/usuario.model';
 
 @Component({
   selector: 'app-register',
@@ -44,9 +45,16 @@ export class RegisterComponent implements OnInit {
     if(!this.forma.value.condiciones) {
       swal("Importante", "Debe aceptar terminos y condiones", "warning");
     }
-    console.log(this.forma.valid);
-    console.log(this.forma.errors);
+
     console.log(this.forma.value);
+    if(this.forma.valid) {
+
+      const usuario = new Usuario(this.forma.value.nombre, this.forma.value.correo, this.forma.value.password);
+      this.usuarioService.CrearUsuario(usuario)
+      .subscribe(result => {
+        console.log(result);
+      });
+    }
   }
 
 }
