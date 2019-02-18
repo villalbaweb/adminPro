@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import swal from 'sweetalert';
 
+import { UsuarioService } from '../services/service.index';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,7 +13,7 @@ import swal from 'sweetalert';
 export class RegisterComponent implements OnInit {
 
   forma: FormGroup
-  constructor() { }
+  constructor(private usuarioService: UsuarioService) { }
 
   passwordConfirmationMatch(element1: string, element2: string){
 
