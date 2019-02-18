@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import swal from 'sweetalert';
 
@@ -14,7 +15,8 @@ import { Usuario } from '../models/usuario.model';
 export class RegisterComponent implements OnInit {
 
   forma: FormGroup
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService,
+              private router: Router) { }
 
   passwordConfirmationMatch(element1: string, element2: string){
 
@@ -53,6 +55,7 @@ export class RegisterComponent implements OnInit {
       this.usuarioService.CrearUsuario(usuario)
       .subscribe(result => {
         console.log(result);
+        this.router.navigate(['login']);
       });
     }
   }
