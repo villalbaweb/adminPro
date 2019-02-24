@@ -15,16 +15,22 @@ export class UsuarioService {
   Login(usuario: Usuario, recordar: boolean = false) {
 
     const url = URL_SERVICIOS + '/login';
-
+    
     return this.http.post(url, usuario)
-      .pipe(
-        map((resp: any) => {
-          localStorage.setItem('id', resp.id);
-          localStorage.setItem('token', resp.token);
-          localStorage.setItem('usuario', JSON.stringify(resp.usuario));
-
-          return resp;
-        }));    
+    .pipe(
+      map((resp: any) => {
+        localStorage.setItem('id', resp.id);
+        localStorage.setItem('token', resp.token);
+        localStorage.setItem('usuario', JSON.stringify(resp.usuario));
+        
+        if(recordar) {
+          localStorage.setItem('email', usuario.email);
+        } else {
+          localStorage.removeItem('email');
+        }
+        return resp;
+      })
+    );    
 
   }
 

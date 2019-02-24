@@ -12,12 +12,16 @@ import { Usuario } from '../models/usuario.model';
 })
 export class LoginComponent implements OnInit {
 
+  email: string;
   recuerdame: boolean = false;
   
   constructor(private usuarioService: UsuarioService,
               private router: Router) { }
 
   ngOnInit() {
+
+    this.email = localStorage.getItem('email') || '';
+    this.recuerdame = this.email !== '';
   }
 
   ingresar(forma: NgForm) {
