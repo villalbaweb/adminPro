@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 import swal from 'sweetalert';
 
@@ -13,7 +14,8 @@ export class UsuarioService {
   usuario: Usuario;
   token: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+      private router: Router) {
     this.loadStorage();
   }
 
@@ -33,6 +35,17 @@ export class UsuarioService {
 
      this.usuario = usuario;
      this.token = token;
+  }
+
+  Logout() {
+    this.usuario = null;
+    this.token = '';
+
+    localStorage.removeItem('id');
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
+
+    this.router.navigate(['/login']);
   }
 
   LoginGoogle(token: string) {
