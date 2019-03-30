@@ -13,7 +13,18 @@ export class UsuarioService {
   usuario: Usuario;
   token: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.loadStorage();
+  }
+
+  IsUserLoggedIn(): boolean {
+    return this.token.length > 0;
+  }
+
+  loadStorage() {
+    this.token = localStorage.getItem('token') ? localStorage.getItem('token') :'';
+    this.usuario = localStorage.getItem('usuario') ? JSON.parse( localStorage.getItem('usuario') ): null;
+  }
 
   guardarStorage(id: string, token: string, usuario: Usuario) {
      localStorage.setItem('id', id);
