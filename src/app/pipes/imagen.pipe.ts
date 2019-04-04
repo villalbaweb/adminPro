@@ -8,13 +8,14 @@ import { URL_SERVICIOS } from '../config/config';
 export class ImagenPipe implements PipeTransform {
 
   transform(imagen: string, tipo: string = 'usuarios'): any {
+
     let url = URL_SERVICIOS + '/img';
+    
+    // Default image
+    if(!imagen) url += '/usuarios/XYZ';
 
     // Google user images
-    if (imagen.indexOf('https') >= 0 ) url = imagen;
-
-    // Default image
-    else if(!imagen) url += 'usuarios/XYZ';
+    else if (imagen.indexOf('https') >= 0 ) url = imagen;
     
     else url += `/${tipo}/${imagen}`;
 

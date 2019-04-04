@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 
@@ -41,7 +42,8 @@ import { ProfileComponent } from './profile/profile.component';
         FormsModule,
         ChartsModule,
         PipesModule,
-        PAGES_ROUTES
+        PAGES_ROUTES,
+        CommonModule
     ]
 })
 export class PagesModule { }
