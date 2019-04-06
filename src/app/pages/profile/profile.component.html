@@ -27,12 +27,14 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-5">
+  <div class="col-lg-5"  aling="center">
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Fotografia del usuario</h4>
           <h6 class="card-subtitle">{{usuario.nombre}}</h6>
-          <img [src]="usuario.img | imagen">
+          <img *ngIf="!imagenSubir" [src]="usuario.img | imagen" class="w150">
+          <img *ngIf="imagenSubir" [src]="imagenTemp" class="w150">
+          <br>
           <input (change)="seleccionImagen($event.target.files[0])" type="file">
           <br>
           <br>
