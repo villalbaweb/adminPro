@@ -7,6 +7,7 @@ import swal from 'sweetalert';
 
 import { Usuario } from 'src/app/models/usuario.model';
 import { URL_SERVICIOS } from 'src/app/config/config';
+import { SubirArchivoService } from '../service.index';
 
 @Injectable()
 export class UsuarioService {
@@ -15,7 +16,8 @@ export class UsuarioService {
   token: string;
 
   constructor(private http: HttpClient,
-      private router: Router) {
+      private router: Router,
+      private subirArchivoService: SubirArchivoService) {
     this.loadStorage();
   }
 
@@ -109,5 +111,19 @@ export class UsuarioService {
         return resp;
       })
     );
+  }
+
+  
+  CambiarImagen(file: File, id: string) {
+    this.subirArchivoService.subirArchivo(file,'usuarios', id)
+    .then((response: any) => {
+      console.log(response);
+      this.usuario.img = response.usuario.img;
+      swal('Imagen actualizada', this.usuario.nombre, 'success');
+      this.guardarStorage(id, this.token, this.usuario);
+    })
+    .catch(error => {
+      console.log(error);
+    });
   }
 }

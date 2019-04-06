@@ -12,9 +12,10 @@ import { UsuarioService } from 'src/app/services/service.index';
 export class ProfileComponent implements OnInit {
 
   usuario: Usuario;
+  imagenSubir: File;
 
   constructor(private usuarioService: UsuarioService) {
-    this.usuario = this.usuarioService.usuario;
+    this.updateUser();
   }
 
   ngOnInit() {
@@ -28,6 +29,28 @@ export class ProfileComponent implements OnInit {
     .subscribe(data => {
       console.log(data);
     });
+  }
+
+  seleccionImagen(archivo: File ) {
+    console.log(archivo);
+
+    if(!archivo) {
+      this.imagenSubir = null;
+      return null;
+    }
+
+    this.imagenSubir = archivo;
+  }
+
+
+  subirImagen() {
+    console.log(this.imagenSubir);
+    this.usuarioService.CambiarImagen(this.imagenSubir, this.usuario._id);
+    this.updateUser();
+  }
+
+  updateUser() {
+    this.usuario = this.usuarioService.usuario;
   }
 
 }

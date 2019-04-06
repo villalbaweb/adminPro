@@ -33,10 +33,10 @@
           <h4 class="card-title">Fotografia del usuario</h4>
           <h6 class="card-subtitle">{{usuario.nombre}}</h6>
           <img [src]="usuario.img | imagen">
-          <input type="file">
+          <input (change)="seleccionImagen($event.target.files[0])" type="file">
           <br>
           <br>
-          <button type="submit" class="btn btn-block btn-outline-primary waves-effect waves-light m-r-10">
+          <button [disabled]="!imagenSubir" (click)="subirImagen()" type="submit" class="btn btn-block btn-outline-primary waves-effect waves-light m-r-10">
             <i class="fa fa-save"></i>
             Actualizar Foto
           </button>
