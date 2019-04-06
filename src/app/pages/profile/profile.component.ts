@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   imagenSubir: File;
 
   constructor(private usuarioService: UsuarioService) {
-    this.updateUser();
+    this.cleanUp();
   }
 
   ngOnInit() {
@@ -46,11 +46,12 @@ export class ProfileComponent implements OnInit {
   subirImagen() {
     console.log(this.imagenSubir);
     this.usuarioService.CambiarImagen(this.imagenSubir, this.usuario._id);
-    this.updateUser();
+    this.cleanUp();
   }
 
-  updateUser() {
+  cleanUp() {
     this.usuario = this.usuarioService.usuario;
+    this.imagenSubir = null;
   }
 
 }
