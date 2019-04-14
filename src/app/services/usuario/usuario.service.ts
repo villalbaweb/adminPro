@@ -7,7 +7,7 @@ import swal from 'sweetalert';
 
 import { Usuario } from 'src/app/models/usuario.model';
 import { URL_SERVICIOS } from 'src/app/config/config';
-import { SubirArchivoService } from '../service.index';
+import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 
 @Injectable()
 export class UsuarioService {
