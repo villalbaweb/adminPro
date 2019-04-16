@@ -126,4 +126,10 @@ export class UsuarioService {
       console.log(error);
     });
   }
+
+  CargarUsuarios( skip: number, take: number ) {
+    let url = URL_SERVICIOS + `/user?skip=${skip}&take=${take}`;
+
+    return this.http.get( url );
+  }
 }
