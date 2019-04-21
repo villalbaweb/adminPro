@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<div class="row animated fadeIn">
+<div *ngIf="loading" class="row animated fadeIn">
   <div class="col-sm-12"> 
     <div class="alert alert-warning text-center">
       <strong>Cargando</strong>
@@ -41,7 +41,7 @@
             <tr *ngFor="let usuario of usuarios">
               <td>
                 <div >
-                  <img [src]="usuario.img | imagen" alt="user" />
+                  <img [src]="usuario.img | imagen" alt="user" width="70"/>
                 </div>
               </td>
               <td>{{usuario.email}}</td>

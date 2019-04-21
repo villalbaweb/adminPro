@@ -17,6 +17,8 @@ export class UsuariosComponent implements OnInit {
 
   totalRegistros: number = 0;
 
+  loading: boolean = true;
+
   constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit() {
@@ -24,11 +26,13 @@ export class UsuariosComponent implements OnInit {
   }
 
   cargarUsuarios() {
+    this.loading = true;
     this.usuarioService.CargarUsuarios(this. skyp, this.take)
     .subscribe((users : any) => {
       console.log(users);
       this.totalRegistros = users.totalRecords;
       this.usuarios = users.usuarios;
+      this.loading = false;
     });
   }
 
