@@ -132,4 +132,13 @@ export class UsuarioService {
 
     return this.http.get( url );
   }
+
+  BuscarUsuario ( termino: string ) {
+    let url = URL_SERVICIOS + `/busqueda/coleccion/usuarios/${termino}`
+
+    return this.http.get( url )
+    .pipe(
+      map(( response: any ) =>  {return response.usuarios} )
+    );
+  }
 }

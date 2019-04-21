@@ -2,7 +2,7 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <input #input type="text" class="form-control" placeholder="Buscar Usuario">
+        <input #input (keyup)="buscarUsuario(input.value)" type="text" class="form-control" placeholder="Buscar Usuario">
       </div>
     </div>
   </div>
@@ -39,9 +39,9 @@
           </thead>
           <tbody>
             <tr *ngFor="let usuario of usuarios">
-              <td>
+              <td class="w70">
                 <div >
-                  <img [src]="usuario.img | imagen" alt="user" width="70"/>
+                  <img [src]="usuario.img | imagen" alt="user" class="img-50 img-thumbnail"/>
                 </div>
               </td>
               <td>{{usuario.email}}</td>

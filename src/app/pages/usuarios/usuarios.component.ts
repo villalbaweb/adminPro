@@ -51,4 +51,21 @@ export class UsuariosComponent implements OnInit {
     this.cargarUsuarios(); 
   }
 
+  buscarUsuario( termino: string ){
+
+    if( termino.length <= 0 ) {
+      this.cargarUsuarios();
+      return;
+    }
+
+    this.loading = true;
+
+    this.usuarioService.BuscarUsuario( termino )
+    .subscribe((usuarios: Usuario[]) => {
+      console.log(usuarios);
+      this.usuarios = usuarios;
+      this.loading = false;
+    });
+  }
+
 }
