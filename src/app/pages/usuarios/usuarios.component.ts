@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from 'src/app/services/service.index';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-usuarios',
@@ -66,6 +67,14 @@ export class UsuariosComponent implements OnInit {
       this.usuarios = usuarios;
       this.loading = false;
     });
+  }
+
+  borrarUsuario( usuario: Usuario ) {
+    console.log( usuario );
+
+    if( usuario._id === this.usuarioService.usuario._id ) {
+      swal('No puede borrar usuario', 'No se puede borrar a si mismo', 'error');
+    }
   }
 
 }
