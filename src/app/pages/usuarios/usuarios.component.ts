@@ -89,7 +89,11 @@ export class UsuariosComponent implements OnInit {
     .then( borrar => {
       console.log( borrar );
       if( borrar ) {
-
+        this.usuarioService.BorrarUsuario( usuario._id )
+        .subscribe((eliminado: boolean)  => {
+          console.log(eliminado);
+          this.cargarUsuarios();
+        });
       }
     });
   }

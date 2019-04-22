@@ -141,4 +141,16 @@ export class UsuarioService {
       map(( response: any ) =>  {return response.usuarios} )
     );
   }
+
+  BorrarUsuario( userId: string ) {
+    let url = URL_SERVICIOS + `/user/${userId}?token=${this.token}`;
+
+    return this.http.delete( url )
+    .pipe(
+      map((resp: any) => {
+        swal('Usuario eliminado', 'Usuario eliminado correctamente', 'success');
+        return true;
+      })
+    );
+  }
 }
