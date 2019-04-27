@@ -92,6 +92,7 @@ export class UsuariosComponent implements OnInit {
         this.usuarioService.BorrarUsuario( usuario._id )
         .subscribe((eliminado: boolean)  => {
           console.log(eliminado);
+          this.skyp = 0;
           this.cargarUsuarios();
         });
       }
