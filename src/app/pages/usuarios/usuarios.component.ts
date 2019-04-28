@@ -101,4 +101,12 @@ export class UsuariosComponent implements OnInit {
     });
   }
 
+  guardarUsuario( usuario: Usuario ) {
+    console.log( usuario );
+    this.usuarioService.ActualizarUsuario(usuario)
+    .subscribe(data => {
+      console.log(data);
+    });
+  }
+
 }
