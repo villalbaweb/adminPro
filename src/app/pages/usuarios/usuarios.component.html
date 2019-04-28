@@ -46,7 +46,11 @@
               </td>
               <td>{{usuario.email}}</td>
               <td>{{usuario.nombre}}</td>
-              <td>{{usuario.role}}</td>
+              <td>
+                  <select [(ngModel)]="usuario.role" name="role" class="form-control">
+                    <option *ngFor="let rol of possibleRoles" value="{{rol}}">{{rol}}</option>
+                  </select>
+              </td>
               <td>
                 <label *ngIf="usuario.google" class="label label-danger">Google</label>
                 <label *ngIf="!usuario.google" class="label label-primary">E-Mail</label>

@@ -22,6 +22,8 @@ export class UsuariosComponent implements OnInit {
 
   loading: boolean = true;
 
+  possibleRoles: string[] = ['ADMIN_ROLE', 'USER_ROLE'];
+
   constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit() {
