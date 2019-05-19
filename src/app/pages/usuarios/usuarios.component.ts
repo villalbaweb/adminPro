@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario.model';
-import { UsuarioService } from 'src/app/services/service.index';
+import { UsuarioService, ModalUploadService } from 'src/app/services/service.index';
 //import swal from 'sweetalert';
 
 declare var swal: any;
@@ -24,10 +24,14 @@ export class UsuariosComponent implements OnInit {
 
   possibleRoles: string[] = ['ADMIN_ROLE', 'USER_ROLE'];
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService,
+    private modalUploadService: ModalUploadService) { }
 
   ngOnInit() {
     this.cargarUsuarios();
+
+    this.modalUploadService.notificacion
+    .subscribe( resp => this.cargarUsuarios());
   }
 
   cargarUsuarios() {
@@ -107,6 +111,11 @@ export class UsuariosComponent implements OnInit {
     .subscribe(data => {
       console.log(data);
     });
+  }
+
+  cambiarImagen( usuario: Usuario) {
+    console.log(usuario);
+    this.modalUploadService.mostrarModal('usuarios', usuario._id, usuario.img);
   }
 
 }

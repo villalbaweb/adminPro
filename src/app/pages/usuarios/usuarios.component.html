@@ -41,7 +41,7 @@
             <tr *ngFor="let usuario of usuarios">
               <td class="w70">
                 <div >
-                  <img [src]="usuario.img | imagen" alt="user" class="img-50 img-thumbnail"/>
+                  <img (click)="cambiarImagen(usuario)" [src]="usuario.img | imagen" alt="user" class="img-50 img-thumbnail pointer"/>
                 </div>
               </td>
               <td>{{usuario.email}}</td>
