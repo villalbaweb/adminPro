@@ -7,6 +7,7 @@ import swal from 'sweetalert';
 
 import { URL_SERVICIOS } from 'src/app/config/config';
 import { UsuarioService } from '../service.index';
+import { Hospital } from 'src/app/models/hospital.model';
 
 @Injectable()
 export class HospitalService {
@@ -36,5 +37,20 @@ export class HospitalService {
         return true;
       })
     );
+  }
+
+  CrearHospital( nombre: string, img?: string ) {
+    console.log(nombre);
+
+    const hospital: Hospital = new Hospital(nombre, img);
+
+    const url = URL_SERVICIOS + `/hospital?token=${this.usuarioService.token}`;
+  
+    return this.http.post (url, hospital)
+      .pipe(
+        map((resp: any) => {
+          swal('Hospital creado', hospital.nombre, 'success');
+          return resp.hospital;
+        }));
   }
 }

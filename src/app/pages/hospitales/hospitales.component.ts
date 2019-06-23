@@ -18,7 +18,13 @@ export class HospitalesComponent implements OnInit {
   constructor(private hospitalService: HospitalService) { }
 
   ngOnInit() {
-    this.borrarHospital('5d0fd7ec3560f828807e7298');
+    //this.borrarHospital('5d0fd7ec3560f828807e7298');
+
+    this.hospitalService.CrearHospital('Hospital Daniel')
+    .subscribe(result => {
+      console.log('Hospital creado...');
+      console.log(result);
+    })
   }
 
   borrarHospital( hospitalId: string ) {
