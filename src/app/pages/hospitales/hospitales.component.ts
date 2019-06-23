@@ -8,33 +8,49 @@ import { Hospital } from 'src/app/models/hospital.model';
 
 @Component({
   selector: 'app-hospitales',
-  templateUrl: './hospitales.component.html',
-  styleUrls: ['./hospitales.component.css']
+  templateUrl: './hospitales.component.html'
 })
 export class HospitalesComponent implements OnInit {
 
   hospitales: Hospital[] = [];
 
+  skyp: number = 0;
+  take: number = 3;
+
+  totalRegistros: number = 0;
+
+  loading: boolean = true;
+
   constructor(private hospitalService: HospitalService) { }
 
   ngOnInit() {
-    //this.borrarHospital('5d0fd7ec3560f828807e7298');
+  }
 
-    // this.hospitalService.CrearHospital('Hospital Daniel')
-    // .subscribe(result => {
-    //   console.log('Hospital creado...');
-    //   console.log(result);
-    // });
+  buscarHospital( termino: string ){
 
-    // this.hospitalService.BuscarHospital('Daniel')
-    // .subscribe(result => {
-    //   console.log(result);
-    // });
+    if( termino.length <= 0 ) {
+      this.cargarHospitales();
+      return;
+    }
 
-    const hospital: Hospital = new Hospital('Modificado Daniel', null, '5d0fe4e3089cbe1764ad6f90');
-    this.hospitalService.ActualizarHospital(hospital)
-    .subscribe(result => {
-      console.log(result);
+    this.loading = true;
+
+    this.hospitalService.BuscarHospital( termino )
+    .subscribe((hospitales: Hospital[]) => {
+      console.log(hospitales);
+      this.hospitales = hospitales;
+      this.loading = false;
+    });
+  }
+
+  cargarHospitales() {
+    this.loading = true;
+    this.hospitalService.CargarHospitales(this. skyp, this.take)
+    .subscribe((hospitals : any) => {
+      console.log(hospitals);
+      this.totalRegistros = hospitals.totalRecords;
+      this.hospitales = hospitals.hospitales;
+      this.loading = false;
     });
   }
 
