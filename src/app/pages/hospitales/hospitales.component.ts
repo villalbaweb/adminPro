@@ -24,6 +24,10 @@ export class HospitalesComponent implements OnInit {
   constructor(private hospitalService: HospitalService) { }
 
   ngOnInit() {
+    this.cargarHospitales();
+
+    // this.modalUploadService.notificacion
+    // .subscribe( resp => this.cargarUsuarios());
   }
 
   buscarHospital( termino: string ){
@@ -54,10 +58,23 @@ export class HospitalesComponent implements OnInit {
     });
   }
 
-  borrarHospital( hospitalId: string ) {
+  cambiarImagen( hospital: Hospital) {
+    console.log(hospital);
+    //this.modalUploadService.mostrarModal('usuarios', usuario._id, usuario.img);
+  }
+
+  guardarHospital( hospital: Hospital ) {
+    console.log( hospital );
+    this.hospitalService.ActualizarHospital(hospital)
+    .subscribe(data => {
+      console.log(data);
+    });
+  }
+
+  borrarHospital( hospital: Hospital ) {
     swal({
       title: 'Estas seguro ?',
-      text: 'Esta a punto de borrar a ' + hospitalId,
+      text: 'Esta a punto de borrar a ' + hospital._id,
       icon: 'warning',
       buttons: true,
       dangerMode: true
@@ -65,12 +82,28 @@ export class HospitalesComponent implements OnInit {
     .then( borrar => {
       console.log( borrar );
       if( borrar ) {
-        this.hospitalService.BorrarHospital( hospitalId )
+        this.hospitalService.BorrarHospital( hospital._id )
         .subscribe((eliminado: boolean)  => {
           console.log(eliminado);
+          this.cargarHospitales();
         });
       }
     });
+  }
+
+  cambiarDesde( valor: number ) {
+    let localSkip = this.skyp + valor;
+
+    if( localSkip >= this.totalRegistros) {
+      return;
+    }
+
+    if ( localSkip < 0 ) {
+      return;
+    }
+
+    this.skyp += valor;
+    this.cargarHospitales(); 
   }
 
 }
