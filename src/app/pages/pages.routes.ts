@@ -9,6 +9,7 @@ import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { HospitalesComponent } from './hospitales/hospitales.component';
 
 import { LoginGuard } from '../services/service.index';
 
@@ -26,6 +27,7 @@ const pagesRoutes: Routes = [
             { path: 'profile', component: ProfileComponent, data: { Titulo: 'Perfile de Usuario'} },
             { path: 'rxjs', component: RxjsComponent, data: { Titulo: 'RxJS Sample'} },
             { path: 'usuarios', component: UsuariosComponent, data: { Titulo: 'Mantenimiento de Usuarios'} },
+            { path: 'hospitales', component: HospitalesComponent, data: { Titulo: 'Mantenimiento de Hospitales'} },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
     }
