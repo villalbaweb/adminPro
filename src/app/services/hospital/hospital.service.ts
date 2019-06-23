@@ -62,4 +62,17 @@ export class HospitalService {
       map(( response: any ) =>  {return response.hospitales} )
     );
   }
+
+  ActualizarHospital( hospital:Hospital ) {
+    let url = URL_SERVICIOS + `/hospital/${hospital._id}?token=${this.usuarioService.token}`;
+
+    return this.http.put(url, hospital)
+    .pipe(
+      map((resp: any) => {
+        
+        swal('Usuario actualizado', hospital.nombre, 'success');
+        return resp;
+      })
+    );
+  }
 }

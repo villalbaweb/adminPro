@@ -26,7 +26,13 @@ export class HospitalesComponent implements OnInit {
     //   console.log(result);
     // });
 
-    this.hospitalService.BuscarHospital('Daniel')
+    // this.hospitalService.BuscarHospital('Daniel')
+    // .subscribe(result => {
+    //   console.log(result);
+    // });
+
+    const hospital: Hospital = new Hospital('Modificado Daniel', null, '5d0fe4e3089cbe1764ad6f90');
+    this.hospitalService.ActualizarHospital(hospital)
     .subscribe(result => {
       console.log(result);
     });
