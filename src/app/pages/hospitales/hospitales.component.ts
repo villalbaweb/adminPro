@@ -20,11 +20,16 @@ export class HospitalesComponent implements OnInit {
   ngOnInit() {
     //this.borrarHospital('5d0fd7ec3560f828807e7298');
 
-    this.hospitalService.CrearHospital('Hospital Daniel')
+    // this.hospitalService.CrearHospital('Hospital Daniel')
+    // .subscribe(result => {
+    //   console.log('Hospital creado...');
+    //   console.log(result);
+    // });
+
+    this.hospitalService.BuscarHospital('Daniel')
     .subscribe(result => {
-      console.log('Hospital creado...');
       console.log(result);
-    })
+    });
   }
 
   borrarHospital( hospitalId: string ) {

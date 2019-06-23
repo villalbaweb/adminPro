@@ -53,4 +53,13 @@ export class HospitalService {
           return resp.hospital;
         }));
   }
+
+  BuscarHospital( termino: string ) {
+    let url = URL_SERVICIOS + `/busqueda/coleccion/hospitales/${termino}`
+
+    return this.http.get( url )
+    .pipe(
+      map(( response: any ) =>  {return response.hospitales} )
+    );
+  }
 }
