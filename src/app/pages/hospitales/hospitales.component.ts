@@ -15,9 +15,9 @@ export class HospitalesComponent implements OnInit {
   constructor(private hospitalService: HospitalService) { }
 
   ngOnInit() {
-    this.hospitalService.CargarHospitales(0, 5)
+    this.hospitalService.ObtenerHospital('5d0fd7ec3560f828807e7298')
     .subscribe((hospitals: any) => {
-      this.hospitales = hospitals.hospitales;
+      this.hospitales.push(hospitals.hospital);
       console.log(this.hospitales);
     });
   }

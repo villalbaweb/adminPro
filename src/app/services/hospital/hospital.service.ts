@@ -18,4 +18,10 @@ export class HospitalService {
 
     return this.http.get( url );
   }
+
+  ObtenerHospital( id: string) {
+    let url = URL_SERVICIOS + `/hospital/${id}`;
+
+    return this.http.get( url );
+  }
 }
