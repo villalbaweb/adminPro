@@ -5,13 +5,14 @@ import { Router } from '@angular/router';
 
 import swal from 'sweetalert';
 
-import { Usuario } from 'src/app/models/usuario.model';
 import { URL_SERVICIOS } from 'src/app/config/config';
+import { UsuarioService } from '../service.index';
 
 @Injectable()
 export class HospitalService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private usuarioService: UsuarioService) { }
 
   CargarHospitales( skip: number, take: number ) {
     let url = URL_SERVICIOS + `/hospital?skip=${skip}&take=${take}`;
@@ -23,5 +24,17 @@ export class HospitalService {
     let url = URL_SERVICIOS + `/hospital/${id}`;
 
     return this.http.get( url );
+  }
+
+  BorrarHospital( id: string ) {
+    let url = URL_SERVICIOS + `/hospital/${id}?token=${this.usuarioService.token}`
+
+    return this.http.delete( url )
+    .pipe(
+      map((resp: any) => {
+        swal('Hospital Eliminado', 'Hospital eliminado correctamente', 'success');
+        return true;
+      })
+    );
   }
 }
