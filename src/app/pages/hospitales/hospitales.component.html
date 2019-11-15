@@ -38,7 +38,7 @@
             <tr *ngFor="let hospital of hospitales">
               <td class="w70">
                 <div >
-                  <img (click)="cambiarImagen(hospital)" [src]="hospital.img | imagen" alt="user" class="img-50 img-thumbnail pointer"/>
+                  <img (click)="cambiarImagen(hospital)" [src]="hospital.img | imagen: 'hospitales'" alt="user" class="img-50 img-thumbnail pointer"/>
                 </div>
               </td>
               <td>

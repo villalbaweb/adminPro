@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 declare var swal: any;
 
-import { HospitalService } from 'src/app/services/service.index';
+import { HospitalService, ModalUploadService } from 'src/app/services/service.index';
 import { Hospital } from 'src/app/models/hospital.model';
 
 @Component({
@@ -21,13 +21,14 @@ export class HospitalesComponent implements OnInit {
 
   loading: boolean = true;
 
-  constructor(private hospitalService: HospitalService) { }
+  constructor(private hospitalService: HospitalService,
+    private modalUploadService: ModalUploadService) { }
 
   ngOnInit() {
     this.cargarHospitales();
 
-    // this.modalUploadService.notificacion
-    // .subscribe( resp => this.cargarUsuarios());
+    this.modalUploadService.notificacion
+    .subscribe( resp => this.cargarHospitales());
   }
 
   buscarHospital( termino: string ){
@@ -60,7 +61,7 @@ export class HospitalesComponent implements OnInit {
 
   cambiarImagen( hospital: Hospital) {
     console.log(hospital);
-    //this.modalUploadService.mostrarModal('usuarios', usuario._id, usuario.img);
+    this.modalUploadService.mostrarModal('hospitales', hospital._id, hospital.img);
   }
 
   guardarHospital( hospital: Hospital ) {

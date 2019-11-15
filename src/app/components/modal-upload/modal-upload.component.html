@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body text-center">
-          <img *ngIf="!imagenSubir" [src]="modalUploadService.imagenTemp | imagen" class="w150">
+          <img *ngIf="!imagenSubir" [src]="modalUploadService.imagenTemp | imagen: modalUploadService.tipo" class="w150">
           <img *ngIf="imagenSubir" [src]="imagenTemp" class="w150">
           <br>
           <input (change)="seleccionImagen($event.target.files[0])" type="file">
